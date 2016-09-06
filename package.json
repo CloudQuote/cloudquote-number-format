@@ -1,0 +1,24 @@
+{
+  "name": "cloudquote-number-format",
+  "version": "1.0.0",
+  "description": "Minimalist Number Formatting Library designed for formatting stock prices",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CloudQuote/cloudquote-number-format.git"
+  },
+  "keywords": [
+    "number",
+    "format",
+    "stocks"
+  ],
+  "author": "Mark Dierolf <mdierolf@financialcontent.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CloudQuote/cloudquote-number-format/issues"
+  },
+  "homepage": "https://github.com/CloudQuote/cloudquote-number-format#readme"
+}
