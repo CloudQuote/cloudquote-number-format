@@ -1,6 +1,6 @@
 {
   "name": "cloudquote-number-format",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Minimalist Number Formatting Library designed for formatting stock prices",
   "main": "index.js",
   "scripts": {
