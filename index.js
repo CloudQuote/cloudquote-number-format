@@ -2,7 +2,7 @@
 export function formatNumber(v,f) { //number, format object
 	if (! (f.Decimals >= 0)) f.Decimals = 0;
 	if (v === 0 || isNaN(v)) return f.Default;
-	let o = []; //output
+	var o = []; //output
 	if (v < 0) {
 		o.push('-');
 		v = Math.abs(v);
@@ -14,7 +14,7 @@ export function formatNumber(v,f) { //number, format object
 		o.push(f.Prefix);
 	}
 
-	let ex = ''; // Extension: K/M/B
+	var ex = ''; // Extension: K/M/B
 	if (f.Compact) {
 		if (v >= 1000000000) {
 			v /= 1000000000;
@@ -31,15 +31,15 @@ export function formatNumber(v,f) { //number, format object
 	v = parseFloat(v).toFixed(f.Decimals);
 
 	if (f.Comma) {
-		let end = v.indexOf('.');
+		var end = v.indexOf('.');
 		if (end === -1) {
 			end = v.length;
 		}
 		if (end > 3) {
-			let parts = new Array();
-			let fraction = v.substr(end,v.length);
+			var parts = new Array();
+			var fraction = v.substr(end,v.length);
 
-			let i = end - 3;
+			var i = end - 3;
 			for (; i > 0; i -= 3) {
 				parts.push(v.substr(i,3));
 			}
