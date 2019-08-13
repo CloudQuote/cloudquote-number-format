@@ -1,7 +1,8 @@
 
+
 export function formatNumber(v,f) { //number, format object
 	if (! (f.Decimals >= 0)) f.Decimals = 0;
-	if (v === 0 || isNaN(v)) return f.Default;
+	if (v === 0 || isNaN(v) || v == null) return f.Default;
 	var o = []; //output
 	if (v < 0) {
 		o.push('-');
