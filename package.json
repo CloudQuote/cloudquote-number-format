@@ -15,6 +15,7 @@
     "format",
     "stocks"
   ],
+  "type": "module",
   "author": "Mark Dierolf <mdierolf@financialcontent.com>",
   "license": "ISC",
   "bugs": {
