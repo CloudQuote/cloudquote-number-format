@@ -1,57 +1,90 @@
+export function formatNumber(value,{
+ Decimals = 0,
+ Default,
+ Prefix,
+ Suffix,
+ Plus,
+ Comma,
+ Compact
+}) {
+ if (value === 0 || isNaN(value) || value == null) return Default;
+ 
+ //number, format object
+ if (Decimals === 'auto') {
+  const absValue = Math.abs(value);
+  if (absValue >= 1000) {
+   Decimals = 0;
+  } else if (absValue>= 10) {
+   Decimals = 2;
+  } else if (absValue >= 1) {
+   Decimals = 3;
+  } else {
+   Decimals = 4;
+  }
+ } else if (Decimals === 'auto.2') {
+  const absValue= Math.abs(value);
+  if (absValue >= 10) {
+   Decimals = 2;
+  } else if (absValue >= 1) {
+   Decimals = 3;
+  } else {
+   Decimals = 4;
+  }
+ }
+ 
+	if (value === 0 || isNaN(value) || value == null) return Default;
 
-
-export function formatNumber(v,f) { //number, format object
-	if (! (f.Decimals >= 0)) f.Decimals = 0;
-	if (v === 0 || isNaN(v) || v == null) return f.Default;
-	var o = []; //output
-	if (v < 0) {
-		o.push('-');
-		v = Math.abs(v);
-	} else if (v > 0 && f.Plus) {
-		o.push('+');
+	const res = []; //output
+	if (value < 0) {
+		res.push('-');
+		value = -value;
+	} else if (value > 0 && Plus) {
+		res.push('+');
 	}
 
-	if (f.Prefix !== null) {
-		o.push(f.Prefix);
+	if (Prefix !== null) {
+		res.push(Prefix);
 	}
 
-	var ex = ''; // Extension: K/M/B
-	if (f.Compact) {
-		if (v >= 1000000000) {
-			v /= 1000000000;
-			ex = "B";
-		} else if (v >= 1000000) {
-			v /= 1000000;
-			ex = "M";
-		} else if (v >= 1000) {
-			v /= 1000;
-			ex = "K";
+ let ext = ''; // Extension: K/M/B
+	if (Compact) {
+		if (value >= 1000000000) {
+			value /= 1000000000;
+			ext = "B";
+		} else if (value >= 1000000) {
+			value /= 1000000;
+			ext = "M";
+		} else if (value >= 1000) {
+			value /= 1000;
+			ext = "K";
 		}
 	}
 
-	v = parseFloat(v).toFixed(f.Decimals);
+	value = parseFloat(value).toFixed(Decimals);
 
-	if (f.Comma) {
-		var end = v.indexOf('.');
-		if (end === -1) {
-			end = v.length;
+	if (Comma) {
+  let end = value.indexOf('.');
+  if (end === -1) {
+			end = value.length;
 		}
 		if (end > 3) {
-			var parts = new Array();
-			var fraction = v.substr(end,v.length);
+			const parts = [];
+   const fraction = value.substring(end);
 
-			var i = end - 3;
-			for (; i > 0; i -= 3) {
-				parts.push(v.substr(i,3));
+   let i = end - 3;
+   for (; i > 0; i -= 3) {
+				parts.push(value.substring(i,i + 3));
 			}
-			parts.push(v.substr(0,i+3));
-			v = parts.reverse().join(",") + fraction;
+			parts.push(value.substring(0,i+3));
+			value = parts.reverse().join(",") + fraction;
 		}
 	}
-	o.push(v);
-	o.push(ex);
-	if (f.Suffix !== null) {
-		o.push(f.Suffix);
+	res.push(value);
+	res.push(ext);
+	if (Suffix !== null) {
+		res.push(Suffix);
 	}
-	return o.join("");
-};
+	return res.join("");
+}
+
+export default formatNumber;
