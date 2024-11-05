@@ -48,7 +48,10 @@ export function formatNumber(value,{
 
  let ext = ''; // Extension: K/M/B
 	if (Compact) {
-		if (value >= 1000000000) {
+		if (value >= 1000000000000) {
+			value /= 1000000000000;
+			ext = "T";
+		} else if (value >= 1000000000) {
 			value /= 1000000000;
 			ext = "B";
 		} else if (value >= 1000000) {
